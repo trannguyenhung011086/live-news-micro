@@ -3,7 +3,7 @@ const NewsAPI = require('newsapi');
 
 const micro = require('micro');
 const { router, get } = require('micro-fork');
-const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
+const newsapi = new NewsAPI(process.env.NEWS_TOKEN);
 
 const fetchNews = async (searchTerm, pageNum) => {
     return await newsapi.v2.everything({

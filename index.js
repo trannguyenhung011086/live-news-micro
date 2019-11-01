@@ -1,8 +1,9 @@
 require('dotenv').config();
-const NewsAPI = require('newsapi');
 
 const micro = require('micro');
 const { router, get } = require('micro-fork');
+const NewsAPI = require('newsapi');
+
 const newsapi = new NewsAPI(process.env.NEWS_TOKEN);
 
 const fetchNews = async (searchTerm, pageNum) => {
@@ -53,8 +54,9 @@ const Router = router()(
 const app = micro(Router);
 
 if (!process.env.IS_NOW) {
-    app.listen(process.env.PORT || 3000);
-    console.log(`Micro is serving at ${process.env.PORT || 3000}`);
+    const port = process.env.PORT || 3000;
+    app.listen(port);
+    console.log(`Micro is serving at ${port}`);
 }
 
 module.exports = app;

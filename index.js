@@ -23,15 +23,32 @@ const home = (req, res) => {
 };
 
 const fetch = async (req, res) => {
-    // res.setHeader('Access-Control-Allow-Origin', '*');
-    const topic = req.query['search'];
+    if (!process.env.NEWS_TOKEN) {
+        micro.send(res, 403, 'No NEWS_TOKEN found!');
+        return;
+    }
 
-    const data = await fetchNews(topic, 1).catch(e => console.log(e));
+    try {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        const topic = req.query['search'];
 
-    micro.send(res, 200, data.articles);
+        const data = await fetchNews(topic, 1).catch(e => console.log(e));
+
+        micro.send(res, 200, data.articles);
+    } catch (e) {
+        micro.send(res, 500, e);
+    }
 };
 
-const Router = router()(get('/', home), get('/topic', fetch));
+const notFound = (req, res) => {
+    micro.send(res, 404, 'Page not found');
+};
+
+const Router = router()(
+    get('/', home),
+    get('/topic', fetch),
+    get('*', notFound),
+);
 
 const app = micro(Router);
 

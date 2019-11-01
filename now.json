@@ -1,0 +1,9 @@
+{
+    "version": 1,
+    "name": "live-news-micro",
+    "builds": [{ "src": "index.js", "use": "@now/node" }],
+    "env": {
+        "IS_NOW": "true",
+        "NEWS_TOKEN": "@news_token"
+    }
+}

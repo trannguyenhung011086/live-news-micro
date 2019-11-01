@@ -1,0 +1,25 @@
+{
+    "name": "live-news-micro",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "prettier": {
+        "trailingComma": "all",
+        "tabWidth": 4,
+        "semi": true,
+        "singleQuote": true
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "eslint": "^6.6.0",
+        "micro": "^9.3.4",
+        "micro-fork": "^2.0.0",
+        "newsapi": "^2.4.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Hung",
+    "license": "ISC"
+}
